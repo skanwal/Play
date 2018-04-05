@@ -13,6 +13,14 @@ glimpse(msleep)
 
 msleep %>% select(name, sleep_total) %>% mutate(sleep_total_minute = sleep_total * 60)
 
-msleep %>% select(name, sleep_total) %>% mutate(sleep_total_vs_avg = sleep_total - round(mean(sleep_total), 1), 
-                                                sleep_total_vs_min = sleep_total - min(sleep_total))
+#Create two new coloumns 
+msleep %>% select(name, sleep_total) %>% 
+           mutate(sleep_total_vs_avg = sleep_total - round(mean(sleep_total), 1),
+           sleep_total_vs_min = sleep_total - min(sleep_total))
+
+#Create column using if else and arrange
+msleep %>% select(name, brainwt) %>% 
+           mutate(brainwt2 = ifelse(brainwt > 4, NA, brainwt)) %>% 
+           arrange(desc(brainwt))
+
 
