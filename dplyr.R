@@ -1,4 +1,5 @@
 library(tidyverse)
+library(tidyr)
 library(vcfR)
 
 #Test file
@@ -40,16 +41,42 @@ msleep %>% select(name, sleep_total:bodywt) %>%
   mutate_if(is.numeric, round)
 
 #Applying mutate to specific coloumns names
-
 msleep %>% select(name, sleep_total:awake) %>% 
   mutate_at(vars(contains("sleep")), ~(.*60))
 
+#Changing coloumn names after mutation
+msleep %>% select(name, sleep_total:awake) %>% 
+  mutate_at(vars(contains("sleep"))  , ~(.*60)) %>% 
+  rename_at(vars(contains("sleep")), ~paste0(.,"_min"))
+
+#Adding coloumns with funs() inside mutate function. Funs() add the left arugument in the
+#quality to the selection made in the first argument of mutate_at
+msleep %>% select(name, sleep_total:awake) %>% 
+  mutate_at(vars(contains("sleep")), funs(min = .*60))
+
+#Creating new coloumns using ifelse() conditional
+msleep %>% select(name, sleep_total) %>% 
+  mutate(sleep_time = ifelse(sleep_total > 10, "long", "short"))
+
+#Evaluating multiple statements in mutate using case_when
+msleep %>% select(name, sleep_total) %>% 
+  mutate(sleep_total_discr = case_when(
+    sleep_total>13 ~ "very long",
+    sleep_total>10 ~ "long",
+    sleep_total>7 ~ "limited",
+    TRUE ~ "short")) %>% 
+  mutate(sleep_total_discr = factor(sleep_total_discr, levels = c("short", "limited",
+                                                                  "long", "very long")))
+  
+#Splitting and merging coloumns
+conservation_expl <- read_csv("conservation_explanation.csv") %>%
+  conservation_table <- conservation_expl %>%
+  separate(`conservation abbreviation`,
+           into = c("abbreviation", "description"), sep = "=")
 
 
-
-
-
-
-
+  
+  
+  
 
 
