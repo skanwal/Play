@@ -13,7 +13,7 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Required packages
+## Required packages
 
 ```{r}
 library(purrr)
@@ -21,9 +21,51 @@ library(repurrrsive)
 library(listviewer)
 ```
 
-`listviewer` is an interactive way to explore objects vs `str`. `wesanderson` is a list from repurrrsive
+`listviewer` is an interactive way to explore objects vs `str`. 
+`wesanderson`, `got_chars` and `gh_users` are lists from library `repurrrsive`. 
+
+## Data
 
 ```{r}
 str(wesanderson)
 listviewer::jsonedit(wesanderson, mode = "view")
+
+str(got_chars, list.len = 3)
+listviewer::jsonedit(got_chars, mode = "view")
+
+str(gh_users, max.level = 1)
+listviewer::jsonedit(gh_users, mode = "view")
 ```
+
+## map(): Extract elements
+
+```{r}
+# Extract elements with name "name" - restrict to first few elements
+map(got_chars[1:4], "name")
+
+# Extract elements on the basis of integer values
+map(got_chars[5:8], 3)
+
+# Using the pipe %>%
+got_chars[1:4] %>% 
+  map("name")
+got_chars[5:8] %>% 
+  map(3)
+```
+
+In summary, are two shortcuts for making the .f function that map() will apply:
+
+  - provide “TEXT” to extract the element named “TEXT”
+         equivalent to function(x) x[["TEXT"]]
+  - provide i to extract the i-th element
+         equivalent to function(x) x[[i]]
+
+
+
+
+
+
+
+
+
+
