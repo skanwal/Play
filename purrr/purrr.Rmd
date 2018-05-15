@@ -39,6 +39,8 @@ listviewer::jsonedit(gh_users, mode = "view")
 
 ## map(): Extract elements
 
+A template for basic map() usage is `map(YOUR_LIST, YOUR_FUNCTION)`
+
 ```{r}
 # Extract elements with name "name" - restrict to first few elements
 map(got_chars[1:4], "name")
@@ -60,12 +62,68 @@ In summary, are two shortcuts for making the .f function that map() will apply:
   - provide i to extract the i-th element
          equivalent to function(x) x[[i]]
 
+## Exercises
 
+Use names() to inspect the names of the list elements associated with a single character. What is the index or position of the playedBy element? Use the character and position shortcuts to extract the playedBy elements for all characters.
 
+```{r}
+map(got_chars[1:4], "playedBy")
+map(got_chars[1:4], 18)
+```
 
+What happens if you use the character shortcut with a string that does not appear in the lists’ names?
 
+```{r}
+map(got_chars[1:4], "namess")
+```
 
+## Type-specific map
 
+map() always returns a list, even if all the elements have the same flavor and are of length one. But in that case, you might prefer a simpler object: an atomic vector.
 
+```{r}
+#returns a list
+map(got_chars[9:12], "name")
 
+#returns atomic vector
+map_chr(got_chars[9:12], "name")
+```
 
+## Extract multiple values
+
+```{r}
+got_chars[[3]][c("name", "culture", "gender", "born")]
+
+#using map
+x <- map(got_chars, `[`, c("name", "culture", "gender", "born"))
+str(x[16:17])
+
+#using extract from magrittr
+library(magrittr)
+x <- map(got_chars, extract, c("name", "culture", "gender", "born"))
+str(x[18:19])
+```
+
+## Data frame output
+
+Above, we extrcated lists from `map` list. However, we can stack-up these results row-wise 
+
+```{r}
+map_df(got_chars, extract, c("name", "culture", "gender", "id", "born", "alive"))
+```
+
+Notice how the variables have been automatically type converted. It’s a beautiful thing. Until it’s not. When programming, it is safer, but more cumbersome, to explicitly specify type and build your data frame the usual way.
+
+```{r}
+library(tibble)
+got_chars %>% {
+  tibble(
+    name <- map_chr(., "name"),
+    culture <- map_chr(., "culture"),
+    gender <- map_chr(., "gender"),
+    id <- map_int(., "id"),
+    born <- map_chr(., "born"),
+    alive <- map_lgl(., "alive")
+  )
+}
+```
