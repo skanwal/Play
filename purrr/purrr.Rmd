@@ -19,12 +19,15 @@ knitr::opts_chunk$set(echo = TRUE)
 library(purrr)
 library(repurrrsive)
 library(listviewer)
+library(tibble)
+library(jsonlite)
+library(dplyr)
 ```
 
 `listviewer` is an interactive way to explore objects vs `str`. 
 `wesanderson`, `got_chars` and `gh_users` are lists from library `repurrrsive`. 
 
-## Data
+# Exploring data
 
 ```{r}
 str(wesanderson)
@@ -37,7 +40,7 @@ str(gh_users, max.level = 1)
 listviewer::jsonedit(gh_users, mode = "view")
 ```
 
-## map(): Extract elements
+# map(): Extract elements
 
 A template for basic map() usage is `map(YOUR_LIST, YOUR_FUNCTION)`
 
@@ -115,7 +118,6 @@ map_df(got_chars, extract, c("name", "culture", "gender", "id", "born", "alive")
 Notice how the variables have been automatically type converted. It’s a beautiful thing. Until it’s not. When programming, it is safer, but more cumbersome, to explicitly specify type and build your data frame the usual way.
 
 ```{r}
-library(tibble)
 got_chars %>% {
   tibble(
     name <- map_chr(., "name"),
@@ -127,3 +129,39 @@ got_chars %>% {
   )
 }
 ```
+
+# Simplifying data
+
+A great use of purrr’s map() functions is to dig information out of a non-rectangular data structure and create a neat data frame. 
+
+## Name and position shortcuts
+
+Who are these GitHub users?
+
+We need to reach into each user’s list and pull out the element that holds the user’s name or, maybe, username. How?
+
+```{r}
+map(gh_users, "login")
+```
+
+# Specifying the function in map()
+
+Let's now work on three more ways to specify general `.f` function in map():
+
+  - an existing function
+  - an anonymous function, defined on-the-fly, as usual
+  - a formula: this is unique to purrr and provides a very concise way to define an anonymous function
+  
+In Game of Thrones character list, got_chars, each character can have aliases, which are stored in a vector in each character’s component. We pull out the aliases for three characters to use as our demo.
+
+```{r}
+aliases <- set_names(map(got_chars, "aliases"), map_chr(got_chars, "name"))
+aliases <- aliases[c("Theon Greyjoy", "Asha Greyjoy", "Brienne of Tarth")]
+```
+
+
+
+
+
+
+
