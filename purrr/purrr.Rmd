@@ -13,6 +13,8 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+This report documents the work I did to learn R's `purrr` package (https://jennybc.github.io/purrr-tutorial/index.html). Trying to tick-off one item from my to-do list :memo:
+
 ## Required packages
 
 ```{r}
