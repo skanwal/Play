@@ -194,7 +194,7 @@ map(aliases, ~ paste(.x, collapse = " | "))
 
 # List columns
 
-Getting and preparing data
+Getting and preparing data. I stumbled onto an issue trying to read data using read.csv. I had to update R and re-install few packages.
 
 ```{r}
 load("trump_tweets_df.rda")
