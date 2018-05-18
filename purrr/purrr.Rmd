@@ -22,6 +22,9 @@ library(listviewer)
 library(tibble)
 library(jsonlite)
 library(dplyr)
+library(stringr)
+library(lubridate)
+library(here)
 ```
 
 `listviewer` is an interactive way to explore objects vs `str`. 
@@ -159,9 +162,48 @@ aliases <- set_names(map(got_chars, "aliases"), map_chr(got_chars, "name"))
 aliases <- aliases[c("Theon Greyjoy", "Asha Greyjoy", "Brienne of Tarth")]
 ```
 
+## Existing function
+
+Use a pre-existing function. Or, as here, define one ourselves, which gives a nice way to build-in our specification for the  collapse argument.
+
+```{r}
+my_fun <- function(x)
+  paste(x, collapse = " | ")
+
+map(aliases, my_fun)
+```
 
 
+## Anonymous function, conventional
 
+Define an anonymous function on-the-fly, in the conventional way. Here we put our desired value for the collapse argument into the function defintion itself.
 
+```{r}
+map(aliases, function(x) paste(x, collapse = " | ")) 
+```
 
+## Anonymous function, formula
+
+We saved possibly the best for last.
+
+purrr provides a very concise way to define an anonymous function: as a formula. This should start with the ~ symbol and then look like a typical top-level expression, as you might write in a script. Use .x to refer to the input, i.e. an individual element of the primary vector or list.
+
+```{r}
+map(aliases, ~ paste(.x, collapse = " | "))
+```
+
+# List columns
+
+Getting and preparing data
+
+```{r}
+load("trump_tweets_df.rda")
+#glimpse(trump_tweets_df)
+
+tweets <- trump_tweets_df$text
+tweets %>% head() %>% strtrim(70)
+
+tweets <- tweets[c(1, 2, 5, 6, 198, 347, 919)]
+tweets %>% strtrim(70)
+```
 
