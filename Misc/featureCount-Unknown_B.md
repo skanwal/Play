@@ -25,7 +25,7 @@ editor_options:
     * [Filtering to remove lowly expressed genes](#filtering-to-remove-lowly-expressed-genes)
     * [Distribution Plot](#istribution-plot)
 * [Plotting cumulative fraction VS gene log2 fold change](#plotting-cumulative-fraction-vs-gene-log2-fold-change)
-    * [Adding Quartiles and MYC for kallisto bam](#adding-quartiles-and-myc-for-kallisto bam)
+    * [Adding Quartiles information and MYC for kallisto bam](#adding-quartiles-information-and-myc-for-kallisto-bam)
     * [Adding Quartiles information and MYC for star bam](#adding-quartiles-information-and-myc-for-star-bam)
 
 <!-- vim-markdown-toc -->
@@ -478,7 +478,7 @@ p
 
 ![](featureCount-Unknown_B_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
-### Adding Quartiles and MYC for kallisto bam
+### Adding Quartiles information and MYC for kallisto bam
 
 
 ```r
