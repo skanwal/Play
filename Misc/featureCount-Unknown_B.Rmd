@@ -275,6 +275,8 @@ p
 
 ### Adding Quartiles information and MYC for kallisto bam
 
+It can be clearly observed that MYC is highly expressed (log 2 count value = 9.345).
+
 ```{r}
 df <- as.data.frame(logcounts)
 
@@ -301,6 +303,8 @@ p
 ```
 
 ### Adding Quartiles information and MYC for star bam
+
+It can be clearly observed that MYC is highly expressed (log 2 count value = 9.484).
 
 ```{r}
 df <- as.data.frame(logcounts)
