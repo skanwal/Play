@@ -26,7 +26,7 @@ library(jsonlite)
 library(dplyr)
 library(stringr)
 library(lubridate)
-library(here)
+#library(here)
 ```
 
 `listviewer` is an interactive way to explore objects vs `str`. 
