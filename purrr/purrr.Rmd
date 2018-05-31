@@ -38,10 +38,10 @@ library(lubridate)
 str(wesanderson)
 listviewer::jsonedit(wesanderson, mode = "view")
 
-str(got_chars, list.len = 3)
+str(got_chars, list.len = 4)
 listviewer::jsonedit(got_chars, mode = "view")
 
-str(gh_users, max.level = 1)
+str(gh_users, max.level = 2)
 listviewer::jsonedit(gh_users, mode = "view")
 ```
 
