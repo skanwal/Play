@@ -1,4 +1,5 @@
-
+# This was from an online answer that I think I searched when working with the unknown B sample to do fpkm analysisn and 
+# drawing plots. Helped me with having multiple data points on lines
 
 require(ggplot2)
 require(reshape2)
