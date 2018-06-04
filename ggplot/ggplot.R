@@ -1,3 +1,5 @@
+
+
 require(ggplot2)
 require(reshape2)
 
@@ -28,3 +30,4 @@ ggplot(sdata.m, aes(x=value, color=variable,linetype=variable,shape=variable))+
   scale_linetype_manual(breaks=c("d.a","d.b","s.a","s.a.mean","s.b","s.b.mean"),
                         values=c(2,2,1,0,1,0))+
   guides(color=guide_legend(override.aes=list(shape=c(NA,NA,NA,16,NA,16))))
+
