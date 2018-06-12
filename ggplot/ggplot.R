@@ -35,6 +35,17 @@ ggplot(sdata.m, aes(x=value, color=variable,linetype=variable,shape=variable))+
 # Following this https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html. Note: It is not possible to do interactive graphics 
 # with ggplot.
 
+housing <- read.csv("Documents/UMCCR/Play/Play/ggplot/Rgraphics/dataSets/landdata-states.csv")
+head(housing[1:5])
+
+# Base graphics histogram
+hist(housing$Home.Value)
+
+# Using ggplot
+ggplot(housing, aes(x = Home.Value)) +
+  geom_histogram()
+
+# Clearly base produced a better histogram
 
 
 
