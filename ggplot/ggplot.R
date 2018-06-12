@@ -32,3 +32,9 @@ ggplot(sdata.m, aes(x=value, color=variable,linetype=variable,shape=variable))+
                         values=c(2,2,1,0,1,0))+
   guides(color=guide_legend(override.aes=list(shape=c(NA,NA,NA,16,NA,16))))
 
+# Following this https://tutorials.iq.harvard.edu/R/Rgraphics/Rgraphics.html. Note: It is not possible to do interactive graphics 
+# with ggplot.
+
+
+
+
