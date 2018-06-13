@@ -90,7 +90,7 @@ legend(1975, 400000,
        pch=c(1, 1))
 ```
 
-ggplot2 colored scatter plot example
+ggplot colored scatter plot example
 
 ```{r}
 ggplot(subset(housing, State %in% c("MA", "TX")),
@@ -100,4 +100,22 @@ ggplot(subset(housing, State %in% c("MA", "TX")),
   geom_point()
 ```
 
+ggplot wins clearly.
+
+3. Geometric objects and aesthetics
+
+Starting with points i.e. scatterplot
+
+```{r}
+hp2001Q1 <- subset(housing, Date == 2001.25) 
+ggplot(hp2001Q1,
+       aes(y = Structure.Cost, x = Land.Value)) +
+  geom_point()
+```
+
+```{r}
+ggplot(hp2001Q1,
+       aes(y = Structure.Cost, x = log(Land.Value))) +
+  geom_point()
+```
 

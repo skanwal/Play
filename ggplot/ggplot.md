@@ -152,7 +152,7 @@ legend(1975, 400000,
 
 ![](ggplot_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
 
-ggplot2 colored scatter plot example
+ggplot colored scatter plot example
 
 
 ```r
@@ -165,4 +165,28 @@ ggplot(subset(housing, State %in% c("MA", "TX")),
 
 ![](ggplot_files/figure-html/unnamed-chunk-5-1.png)<!-- -->
 
+ggplot wins clearly.
+
+3. Geometric objects and aesthetics
+
+Starting with points i.e. scatterplot
+
+
+```r
+hp2001Q1 <- subset(housing, Date == 2001.25) 
+ggplot(hp2001Q1,
+       aes(y = Structure.Cost, x = Land.Value)) +
+  geom_point()
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-6-1.png)<!-- -->
+
+
+```r
+ggplot(hp2001Q1,
+       aes(y = Structure.Cost, x = log(Land.Value))) +
+  geom_point()
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
 
