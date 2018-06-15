@@ -133,3 +133,13 @@ p1 + geom_point(aes(color = Home.Value)) +
   geom_line(aes(y = pred.SC))
 ```
 
+*Smoothers*
+
+Not all geometric objects are simple shapes–the smooth geom includes a line and a ribbon.
+
+```{r}
+p1 +
+  geom_point(aes(color = Home.Value)) +
+  geom_smooth()
+```
+
