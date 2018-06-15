@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Wed 2018-Jun-13"
+date: "Fri 2018-Jun-15"
 output: 
   html_document: 
     keep_md: yes
@@ -189,4 +189,18 @@ ggplot(hp2001Q1,
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-7-1.png)<!-- -->
+
+4. Lines and Prediction lines
+
+
+```r
+hp2001Q1$pred.SC <- predict(lm(Structure.Cost ~ log(Land.Value), data = hp2001Q1))
+
+p1 <- ggplot(hp2001Q1, aes(x = log(Land.Value), y = Structure.Cost))
+
+p1 + geom_point(aes(color = Home.Value)) +
+  geom_line(aes(y = pred.SC))
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 

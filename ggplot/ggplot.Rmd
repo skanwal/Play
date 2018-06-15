@@ -119,3 +119,14 @@ ggplot(hp2001Q1,
   geom_point()
 ```
 
+4. Lines and Prediction lines
+
+```{r}
+hp2001Q1$pred.SC <- predict(lm(Structure.Cost ~ log(Land.Value), data = hp2001Q1))
+
+p1 <- ggplot(hp2001Q1, aes(x = log(Land.Value), y = Structure.Cost))
+
+p1 + geom_point(aes(color = Home.Value)) +
+  geom_line(aes(y = pred.SC))
+```
+
