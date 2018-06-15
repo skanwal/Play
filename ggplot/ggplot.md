@@ -208,7 +208,6 @@ p1 + geom_point(aes(color = Home.Value)) +
 ![](ggplot_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
 
 *Smoothers*
-
 Not all geometric objects are simple shapes–the smooth geom includes a line and a ribbon.
 
 
@@ -224,3 +223,18 @@ p1 +
 
 ![](ggplot_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
 
+*Text label points*
+Each geom accepts a particualar set of mappings–for example geom_text() accepts a labels mapping.
+
+
+```r
+p1 + 
+  geom_text(aes(label=State), size = 3) +
+  geom_smooth()
+```
+
+```
+## `geom_smooth()` using method = 'loess'
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
