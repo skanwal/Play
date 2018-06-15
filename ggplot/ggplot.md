@@ -192,6 +192,9 @@ ggplot(hp2001Q1,
 
 4. Lines and Prediction lines
 
+A plot constructed with ggplot can have more than one geom. In that case the mappings established in the ggplot() call are plot defaults that can be added to or overridden. Our plot could use a regression line:
+
+
 
 ```r
 hp2001Q1$pred.SC <- predict(lm(Structure.Cost ~ log(Land.Value), data = hp2001Q1))
