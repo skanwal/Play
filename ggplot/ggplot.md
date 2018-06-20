@@ -241,6 +241,8 @@ p1 +
 
 5. Aesthetic mapping VS assignment
 
+Note that variables are mapped to aesthetics with the aes() function, while fixed aesthetics are set outside the aes() call. This sometimes leads to confusion, as in this example:
+
 
 ```r
 p1 +
