@@ -252,7 +252,7 @@ p1 +
 
 ![](ggplot_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
-*Mapping varianbles to other aesthetics*
+*Mapping variables to other aesthetics*
 
 Other aesthetics are mapped in the same way as x and y in the previous example.
 
