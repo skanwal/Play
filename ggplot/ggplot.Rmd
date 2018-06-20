@@ -150,3 +150,14 @@ p1 +
   geom_text(aes(label=State), size = 3) +
   geom_smooth()
 ```
+
+5. Aesthetic mapping VS assignment
+
+```{r}
+p1 +
+  geom_point(aes(size = 2),# incorrect! 2 is not a variable
+             color="red") # this is fine -- all points red
+```
+
+
+

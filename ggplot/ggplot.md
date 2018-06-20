@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Fri 2018-Jun-15"
+date: "Wed 2018-Jun-20"
 output: 
   html_document: 
     keep_md: yes
@@ -238,3 +238,17 @@ p1 +
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
+
+5. Aesthetic mapping VS assignment
+
+
+```r
+p1 +
+  geom_point(aes(size = 2),# incorrect! 2 is not a variable
+             color="red") # this is fine -- all points red
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
+
+
+
