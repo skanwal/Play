@@ -161,5 +161,15 @@ p1 +
              color="red") # this is fine -- all points red
 ```
 
+*Mapping varianbles to other aesthetics*
+
+Other aesthetics are mapped in the same way as x and y in the previous example.
+
+```{r}
+p1 +
+  geom_point(aes(color=Home.Value, shape = region))
+```
+
+
 
 

@@ -252,5 +252,22 @@ p1 +
 
 ![](ggplot_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
+*Mapping varianbles to other aesthetics*
+
+Other aesthetics are mapped in the same way as x and y in the previous example.
+
+
+```r
+p1 +
+  geom_point(aes(color=Home.Value, shape = region))
+```
+
+```
+## Warning: Removed 1 rows containing missing values (geom_point).
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+
+
 
 
