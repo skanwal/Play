@@ -275,6 +275,23 @@ Some plot types (such as scatterplots) do not require transformations–each poi
 - for a boxplot the y values must be transformed to the median and 1.5(IQR)
 - for a smoother smother the y values must be transformed into predicted values
 
+*Setting Statistical Transformation Arguments*
+
+Arguments to stat_ functions can be passed through geom_ functions. This can be slightly annoying because in order to change it you have to first determine which stat the geom uses, then determine the arguments to that stat.
+
+For example, here is the default histogram of Home.Value:
+
+
+```r
+p2 <- ggplot(housing, aes(x = Home.Value))
+p2 + geom_histogram()
+```
+
+```
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
 
 
 
