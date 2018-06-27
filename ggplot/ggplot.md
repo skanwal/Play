@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Wed 2018-Jun-20"
+date: "Tue 2018-Jun-26"
 output: 
   html_document: 
     keep_md: yes
@@ -267,6 +267,13 @@ p1 +
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-12-1.png)<!-- -->
+
+### Statistical Transformations
+
+Some plot types (such as scatterplots) do not require transformations–each point is plotted at x and y coordinates equal to the original value. Other plots, such as boxplots, histograms, prediction lines etc. require statistical transformations:
+
+for a boxplot the y values must be transformed to the median and 1.5(IQR)
+for a smoother smother the y values must be transformed into predicted values
 
 
 
