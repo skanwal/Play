@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Tue 2018-Jun-26"
+date: "Mon 2018-Jul-02"
 output: 
   html_document: 
     keep_md: yes
@@ -292,6 +292,15 @@ p2 + geom_histogram()
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-13-1.png)<!-- -->
+
+This graph looks reasonable but we can change defaults to make it more presenatble.
+
+
+```r
+p2 + geom_histogram(stat = "bin", binwidth=4000)
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
 
 

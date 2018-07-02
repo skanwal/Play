@@ -188,5 +188,11 @@ p2 <- ggplot(housing, aes(x = Home.Value))
 p2 + geom_histogram()
 ```
 
+This graph looks reasonable but we can change defaults to make it more presenatble.
+
+```{r}
+p2 + geom_histogram(stat = "bin", binwidth=4000)
+```
+
 
 
