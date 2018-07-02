@@ -328,3 +328,15 @@ rbind(head(housing.sum), tail(housing.sum))
 ## 51    WY  122897.25
 ```
 
+This code `ggplot(housing.sum, aes(x=State, y=Home.Value)) + geom_bar()` won't work. What is the problem with the previous plot? Basically we take binned and summarized data and ask ggplot to bin and summarize it again (remember, geom_bar defaults to stat = stat_count); obviously this will not work. 
+
+We can fix it by telling geom_bar to use a different statistical transformation function:
+
+
+```r
+ggplot(housing.sum, aes(x=State, y=Home.Value)) + 
+  geom_bar(stat="identity")
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
+
