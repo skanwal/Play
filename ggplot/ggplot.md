@@ -302,5 +302,29 @@ p2 + geom_histogram(stat = "bin", binwidth=4000)
 
 ![](ggplot_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
 
+### Changing the Statistical Transformation
 
+Sometimes the default statistical transformation is not what you need. This is often the case with pre-summarized data:
+
+
+```r
+housing.sum <- aggregate(housing["Home.Value"], housing["State"], FUN=mean)
+rbind(head(housing.sum), tail(housing.sum))
+```
+
+```
+##    State Home.Value
+## 1     AK  147385.14
+## 2     AL   92545.22
+## 3     AR   82076.84
+## 4     AZ  140755.59
+## 5     CA  282808.08
+## 6     CO  158175.99
+## 46    VA  155391.44
+## 47    VT  132394.60
+## 48    WA  178522.58
+## 49    WI  108359.45
+## 50    WV   77161.71
+## 51    WY  122897.25
+```
 

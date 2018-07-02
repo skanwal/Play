@@ -194,5 +194,12 @@ This graph looks reasonable but we can change defaults to make it more presenatb
 p2 + geom_histogram(stat = "bin", binwidth=4000)
 ```
 
+### Changing the Statistical Transformation
 
+Sometimes the default statistical transformation is not what you need. This is often the case with pre-summarized data:
+
+```{r}
+housing.sum <- aggregate(housing["Home.Value"], housing["State"], FUN=mean)
+rbind(head(housing.sum), tail(housing.sum))
+```
 
