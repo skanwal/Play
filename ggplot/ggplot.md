@@ -351,3 +351,16 @@ Aesthetic mapping (i.e., with aes()) only says that a variable should be mapped 
 * line type
 
 Scales are modified with a series of functions using a scale_<aesthetic>_<type> naming scheme. Try typing scale_<tab> to see a list of scale modification functions.
+
+*Common Scale Arguments*
+
+The following arguments are common to most scales in ggplot2:
+
+* name: the first argument gives the axis or legend title
+* limits: the minimum and maximum of the scale
+* breaks: the points along the scale where labels should appear
+* labels: the labels that appear at each break
+
+Specific scale functions may have additional arguments; for example, the `scale_color_continuous` function has arguments `low` and `high` for setting the colors at the low and high end of the scale.
+
+
