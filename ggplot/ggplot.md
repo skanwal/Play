@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Mon 2018-Jul-02"
+date: "Mon 2018-Aug-27"
 output: 
   html_document: 
     keep_md: yes
@@ -218,7 +218,7 @@ p1 +
 ```
 
 ```
-## `geom_smooth()` using method = 'loess'
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-9-1.png)<!-- -->
@@ -234,7 +234,7 @@ p1 +
 ```
 
 ```
-## `geom_smooth()` using method = 'loess'
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
@@ -340,3 +340,14 @@ ggplot(housing.sum, aes(x=State, y=Home.Value)) +
 
 ![](ggplot_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
 
+### Scales: Controlling Aesthetic Mapping
+
+Aesthetic mapping (i.e., with aes()) only says that a variable should be mapped to an aesthetic. It doesn’t say how that should happen. For example, when mapping a variable to shape with aes(shape = x) you don’t say what shapes should be used. Similarly, aes(color = z) doesn’t say what colors should be used. Describing what colors/shapes/sizes etc. to use is done by modifying the corresponding scale. In ggplot2 scales include
+
+* position
+* color and fill
+* size
+* shape
+* line type
+
+Scales are modified with a series of functions using a scale_<aesthetic>_<type> naming scheme. Try typing scale_<tab> to see a list of scale modification functions.
