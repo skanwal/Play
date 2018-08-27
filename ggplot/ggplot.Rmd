@@ -212,3 +212,8 @@ ggplot(housing.sum, aes(x=State, y=Home.Value)) +
   geom_bar(stat="identity")
 ```
 
+### Scales: Controlling Aesthetic Mapping
+
+Aesthetic mapping (i.e., with aes()) only says that a variable should be mapped to an aesthetic. It doesn’t say how that should happen. For example, when mapping a variable to shape with aes(shape = x) you don’t say what shapes should be used. Similarly, aes(color = z) doesn’t say what colors should be used. Describing what colors/shapes/sizes etc. to use is done by modifying the corresponding scale. In ggplot2 scales include
+
+Scales are modified with a series of functions using a scale_<aesthetic>_<type> naming scheme. Try typing scale_<tab> to see a list of scale modification functions.
