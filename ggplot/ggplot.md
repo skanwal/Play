@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Mon 2018-Aug-27"
+date: "Fri 2018-Aug-31"
 output: 
   html_document: 
     keep_md: yes
@@ -362,5 +362,24 @@ The following arguments are common to most scales in ggplot2:
 * labels: the labels that appear at each break
 
 Specific scale functions may have additional arguments; for example, the `scale_color_continuous` function has arguments `low` and `high` for setting the colors at the low and high end of the scale.
+
+*Scale Modification Examples*
+
+Start by constructing a dotplot showing the distribution of home values by Date and State.
+
+
+```r
+p3 <- ggplot(housing,
+             aes(x = State,
+                 y = Home.Price.Index)) + 
+        theme(legend.position="top",
+              axis.text=element_text(size = 6))
+(p4 <- p3 + geom_point(aes(color = Date),
+                       alpha = 0.5,
+                       size = 1.5,
+                       position = position_jitter(width = 0.25, height = 0)))
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
 
