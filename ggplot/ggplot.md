@@ -382,4 +382,14 @@ p3 <- ggplot(housing,
 
 ![](ggplot_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
+Now modify the breaks for the x axis and color scales
 
+
+```r
+p4 + scale_x_discrete(name="State Abbreviation") +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"))
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
