@@ -259,3 +259,14 @@ p4 + scale_x_discrete(name="State Abbreviation") +
                          breaks = c(1976, 1994, 2013),
                          labels = c("'76", "'94", "'13"))
 ```
+
+Next change the low and high values to blue and red:
+
+```{r}
+p4 +
+  scale_x_discrete(name="State Abbreviation") +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"),
+                         low = "blue", high = "red")
+```

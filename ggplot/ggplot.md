@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Fri 2018-Aug-31"
+date: "Wed 2018-Sep-12"
 output: 
   html_document: 
     keep_md: yes
@@ -393,3 +393,17 @@ p4 + scale_x_discrete(name="State Abbreviation") +
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-18-1.png)<!-- -->
+
+Next change the low and high values to blue and red:
+
+
+```r
+p4 +
+  scale_x_discrete(name="State Abbreviation") +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"),
+                         low = "blue", high = "red")
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
