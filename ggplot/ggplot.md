@@ -407,3 +407,15 @@ p4 +
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-19-1.png)<!-- -->
+
+
+```r
+library(scales)
+p4 +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"),
+                         low = muted("blue"), high = muted("red"))
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-20-1.png)<!-- -->

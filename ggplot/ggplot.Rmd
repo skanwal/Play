@@ -270,3 +270,12 @@ p4 +
                          labels = c("'76", "'94", "'13"),
                          low = "blue", high = "red")
 ```
+
+```{r}
+library(scales)
+p4 +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"),
+                         low = muted("blue"), high = muted("red"))
+```
