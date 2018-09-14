@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Wed 2018-Sep-12"
+date: "Fri 2018-Sep-14"
 output: 
   html_document: 
     keep_md: yes
@@ -419,3 +419,13 @@ p4 +
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
+
+**Faceting**
+
+- Faceting is ggplot2 parlance for small multiples
+- The idea is to create separate graphs for subsets of data
+- ggplot2 offers two functions for creating small multiples:
+  - facet_wrap(): define subsets as the levels of a single grouping variable
+  - facet_grid(): define subsets as the crossing of two grouping variables
+- Facilitates comparison among plots, not just of geoms within a plot
+

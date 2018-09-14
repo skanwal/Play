@@ -279,3 +279,13 @@ p4 +
                          labels = c("'76", "'94", "'13"),
                          low = muted("blue"), high = muted("red"))
 ```
+
+###Faceting
+
+- Faceting is ggplot2 parlance for small multiples
+- The idea is to create separate graphs for subsets of data
+- ggplot2 offers two functions for creating small multiples:
+  - facet_wrap(): define subsets as the levels of a single grouping variable
+  - facet_grid(): define subsets as the crossing of two grouping variables
+- Facilitates comparison among plots, not just of geoms within a plot
+
