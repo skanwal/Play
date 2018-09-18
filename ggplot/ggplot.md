@@ -382,7 +382,7 @@ p3 <- ggplot(housing,
 
 ![](ggplot_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
-Now modify the breaks for the x axis and color scales
+Modifying the breaks for the x axis and color scales
 
 
 ```r
@@ -438,4 +438,6 @@ p5 + geom_line(aes(color = State))
 ```
 
 ![](ggplot_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
+
+There are two problems here–there are too many states to distinguish each one by color, and the lines obscure one another.
 

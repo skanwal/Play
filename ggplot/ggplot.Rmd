@@ -296,3 +296,5 @@ p5 <- ggplot(housing, aes(x = Date, y = Home.Value))
 p5 + geom_line(aes(color = State)) 
 ```
 
+There are two problems here–there are too many states to distinguish each one by color, and the lines obscure one another.
+
