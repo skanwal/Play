@@ -289,3 +289,10 @@ p4 +
   - facet_grid(): define subsets as the crossing of two grouping variables
 - Facilitates comparison among plots, not just of geoms within a plot
 
+Here, first using a technique we already know–map State to color:
+
+```{r}
+p5 <- ggplot(housing, aes(x = Date, y = Home.Value))
+p5 + geom_line(aes(color = State)) 
+```
+

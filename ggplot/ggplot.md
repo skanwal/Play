@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Fri 2018-Sep-14"
+date: "Tue 2018-Sep-18"
 output: 
   html_document: 
     keep_md: yes
@@ -420,7 +420,7 @@ p4 +
 
 ![](ggplot_files/figure-html/unnamed-chunk-20-1.png)<!-- -->
 
-**Faceting**
+###Faceting
 
 - Faceting is ggplot2 parlance for small multiples
 - The idea is to create separate graphs for subsets of data
@@ -428,4 +428,14 @@ p4 +
   - facet_wrap(): define subsets as the levels of a single grouping variable
   - facet_grid(): define subsets as the crossing of two grouping variables
 - Facilitates comparison among plots, not just of geoms within a plot
+
+Here, first using a technique we already know–map State to color:
+
+
+```r
+p5 <- ggplot(housing, aes(x = Date, y = Home.Value))
+p5 + geom_line(aes(color = State)) 
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
 
