@@ -251,7 +251,7 @@ p3 <- ggplot(housing,
                        position = position_jitter(width = 0.25, height = 0)))
 ```
 
-Now modify the breaks for the x axis and color scales
+Modifying the breaks for the x axis and color scales
 
 ```{r}
 p4 + scale_x_discrete(name="State Abbreviation") +
