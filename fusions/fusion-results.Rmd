@@ -3,6 +3,8 @@ title: "Fusion Results"
 author: "Sehrish Kanwal"
 date: "01/10/2018"
 output: html_document
+params:
+  pizzly_folder: '/Users/kanwals/Documents/UMCCR/data/fusions/pizzly-validation'
 ---
 
 ```{r setup, include=TRUE}
@@ -13,17 +15,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 suppressMessages(library(kableExtra))
-library(tidyverse)
+suppressMessages(library(tidyverse))
+suppressMessages(library(knitr))
 ```
 
-### Pizzly filtering
+### Prioritization of Pizzly results
+
+The prioritization of pizzly results is performed in two steps.
+
+1. In the first step, basic idea is to run kallisto to quantify the fusion transcripts (reported by pizzly) and 
+select those which have a decent TPM support.
+  * Create a new index based on the transcriptome and the fusion transcripts identified by pizzly.
+  * Run kallisto in normal quantification mode on the expanded index to quantify both normal transcripts 
+  and fusions.
+  * Select only the fusions with a high TPM value as reported by previous step.
+
+2. In the second step, fusion genes reported by pizzly are compared with PMCC gene list and report 
+the ones that are present in this list. 
 
 ```{r}
 #read in the pizzly fusion calls
-pizzly.fusions <- read.table(file = '~/Documents/UMCCR/data/fusions/pizzly-validation/MH17T001P013-oncofuse-test-flat-filtered.tsv', header = TRUE)
+pizzly.fusions <- read.table(file = paste(params$pizzly_folder, "pizzly-flat-filtered.tsv", sep = "/"), header = TRUE)
 
 #read in the transcripts quantification file
-quant <- read.table(file = '~/Documents/UMCCR/data/fusions/pizzly-validation/abundance.tsv', header = TRUE)
+quant <- read.table(file = paste(params$pizzly_folder, "abundance.tsv", sep = "/"), header = TRUE)
 
 #sort and filter quantification file on tpm values. Currently filtering on quantiles. Selected 0.997 because that reduces the final fusion
 #calls to the value we are interested in (~15)
@@ -74,9 +89,27 @@ pizzly.fusions2 <- arrange(pizzly.fusions, -order, -order2) %>%
   select(-order,-order2)
 
 kable(pizzly.fusions2) %>%
-  kable_styling(font_size = 10) %>%
+  kable_styling(font_size = 10, "striped", "bordered") %>%
   #row_spec(c(as.numeric(rownames(deduped.result)),as.numeric(rownames(result.pmcc))), bold = T, color = "white", background = "#D7261E") %>%
-  group_rows("Group 1", 1, nrow(deduped.result)) %>%
-  group_rows("Group 2", (nrow(deduped.result)+1), (nrow(deduped.result) + nrow(result.pmcc))) %>%
+  #row_spec(1:nrow(deduped.result), bold = T, color = "white", background = "red") %>%
+  #row_spec((nrow(deduped.result)+1):(nrow(deduped.result) + nrow(result.pmcc)), color = "white", background = "blue") %>%
+  group_rows("Filtered results using expression count matrix", 1, nrow(deduped.result), label_row_css = "background-color: #E74C3C; color: #fff;") %>%
+  group_rows("Filtered results using PMCC gene list", (nrow(deduped.result)+1), (nrow(deduped.result) + nrow(result.pmcc)), label_row_css = "background-color: #2980B9; color: #fff;") %>%
+  group_rows("Other pizzly results", (nrow(deduped.result) + nrow(result.pmcc) +1), nrow(pizzly.fusions2), label_row_css = "background-color: #27AE60; color: #fff;") %>%
   scroll_box(width = "100%", height = "200px")
+```
+
+## Fusion visualization {.tabset}
+
+### `r paste(pizzly.fusions2$geneA.name[1], pizzly.fusions2$geneB.name[1], sep="-")`
+
+```{r fusions_figs, comment = NA, message=TRUE, warning=FALSE}
+#knitr::opt_chunk$set(base.dir="~/Documents/UMCCR/data/fusions/", base.url="/")
+#knitr::opt_chunk$set(fig.path = "pizzly-validation/", base.url="/")
+
+fusion_graph <- paste(params$pizzly_folder, paste0(pizzly.fusions2$geneA.name[1], "_", pizzly.fusions2$geneB.name[1], ".pdf"), sep = "/")
+#fusion_graph <- params$pizzly_folder
+
+include_graphics(fusion_graph)
+
 ```
