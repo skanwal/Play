@@ -298,3 +298,14 @@ p5 + geom_line(aes(color = State))
 
 There are two problems here–there are too many states to distinguish each one by color, and the lines obscure one another.
 
+###Faceting to the rescue
+
+We can remedy the deficiencies of the previous plot by faceting by state rather than mapping state to color.
+
+```{r}
+(p5 <- p5 + geom_line() +
+   facet_wrap(~State, ncol = 10))
+```
+
+There is also a facet_grid() function for faceting in two dimensions.
+
