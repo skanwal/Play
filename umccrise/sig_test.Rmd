@@ -54,7 +54,7 @@ render_me <- function() {
   dd <- "/Users/kanwals/Documents/UMCCR/data/umccrise_test_data/umccrise_test_data"
   rmarkdown::render("sig_test.Rmd", params = list(
     workdir = '/Users/kanwals/Documents/UMCCR/Play/Play/umccrise',
-    vcf_fname = file.path('/Users/kanwals/Documents/UMCCR/data/vcfs/MH17T001P004-somatic-ensemble-pon_hardfiltered.vcf.gz'),
+    vcf_fname = file.path('/Users/kanwals/Documents/UMCCR/data/vcfs/2016_249_17_MH_P013__CCR180084_VPT-MH013-somatic.vcf.gz'),
     af_freqs = file.path(dd, 'gold_standard/bcbio_test_project/work/cup__cup_tissue/rmd/afs/af_tumor.txt'),
     af_freqs_az300 = file.path(dd, 'gold_standard/bcbio_test_project/work/cup__cup_tissue/rmd/afs/af_tumor_az300.txt'),
     sv_fname = file.path(dd, 'gold_standard/bcbio_test_project/cup__cup_tissue/structural/cup__cup_tissue-sv-prioritize-manta-pass.tsv'),
