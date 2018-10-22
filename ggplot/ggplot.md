@@ -1,7 +1,7 @@
 ---
 title: "Practicing plots with ggplot"
 author: "Sehrish Kanwal"
-date: "Tue 2018-Sep-18"
+date: "Fri 2018-Oct-19"
 output: 
   html_document: 
     keep_md: yes
@@ -440,4 +440,18 @@ p5 + geom_line(aes(color = State))
 ![](ggplot_files/figure-html/unnamed-chunk-21-1.png)<!-- -->
 
 There are two problems here–there are too many states to distinguish each one by color, and the lines obscure one another.
+
+###Faceting to the rescue
+
+We can remedy the deficiencies of the previous plot by faceting by state rather than mapping state to color.
+
+
+```r
+(p5 <- p5 + geom_line() +
+   facet_wrap(~State, ncol = 10))
+```
+
+![](ggplot_files/figure-html/unnamed-chunk-22-1.png)<!-- -->
+
+There is also a facet_grid() function for faceting in two dimensions.
 
