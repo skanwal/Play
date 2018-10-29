@@ -309,3 +309,9 @@ We can remedy the deficiencies of the previous plot by faceting by state rather 
 
 There is also a facet_grid() function for faceting in two dimensions.
 
+Now, lets try ggplot themes. 
+
+```{r}
+p5 + theme_linedraw()
+```
+
