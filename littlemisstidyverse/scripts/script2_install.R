@@ -8,7 +8,7 @@
 # So let's get started. First you need to install tidyverse. Here is the command
 # that you need:
 
-install.packages("tidyverse")
+#install.packages("tidyverse")
 
 # Note that the quote marks "" are required here. There will be other commands
 # where quotes aren't needed. This is one of the sorcery things.

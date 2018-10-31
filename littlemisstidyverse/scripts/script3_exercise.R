@@ -13,11 +13,11 @@
 # the RUN button above if you just want to run a few lines at a time 
 
 # load packages
-library(BROKEN-BIT)
+library(tidyverse)
 
 # load the tidy users data set
-data_file <- "./datasets/BROKEN-BIT"  
-tidy_users <- read_csv(BROKEN-BIT)
+data_file <- "./datasets/tidy_users.csv"  
+tidy_users <- read_csv(data_file)
 
 # print the data at the console
 print(tidy_users)
@@ -26,10 +26,11 @@ print(tidy_users)
 # number of users at the website as a function of
 # the day number
 scatter <- tidy_users %>%
-  ggplot(aes(x = BROKEN-BIT, y = BROKEN-BIT)) + 
-  geom_point()
+  ggplot(aes(x = DayNum, y = Users)) + 
+  geom_point() +
+  geom_line()
 
-BROKEN-BIT(scatter)
+plot(scatter)
 
 # If you can get this to work it will look *almost* identical to the
 # one on the screen.... except there is no line on your version. How
