@@ -7,17 +7,18 @@ library(tidyverse)
 
 # import the data
 tidy_users <- read_csv("./datasets/tidy_users.csv")
+print(tidy_users)
 
 # the example count the total number of users each month,
-# and story it in a column named total_users
+# and store it in a column named total_users
 monthly_users <- tidy_users %>%
-  group_by( MISSING_PART ) %>%
+  group_by( Month ) %>%
   summarise(
-    MISSING_PART = sum( MISSING_PART ) 
+    total_users = sum( Users ) 
   )
 
 # print the summary to the console 
-MISSING_PART
+print(monthly_users)
 
 # then, because I like pictures, make a bar graph (notice
 # that the months appear in chronological/numerical order,
