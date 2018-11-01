@@ -10,9 +10,9 @@ tidy_users <- read_csv("./datasets/tidy_users.csv")
 #       in descending order 
 
 output1 <- tidy_users %>% 
-  filter( YOUR_CODE_HERE ) %>% 
-  select( YOUR_CODE_HERE ) %>%
-  arrange( YOUR_CODE_HERE )
+  filter( Users > 200 ) %>% 
+  select( Date, Users ) %>%
+  arrange( -Users )
 
 print(output1)
 
@@ -25,7 +25,8 @@ print(output1)
 # of User.
 
 output2 <- tidy_users %>% 
-  YOUR_CODE_HERE
+  filter(Weekday == 'Saturday' & Users > 50) %>%
+  arrange(-Users)
 
 print(output2)
 
@@ -38,11 +39,19 @@ print(output2)
 # arrange to sort the weekdays by mean number of users. 
 
 output3 <- tidy_users %>%
-  group_by( YOUR_CODE_HERE ) %>%
-  summarise( YOUR_CODE_HERE ) %>% 
-  arrange( YOUR_CODE_HERE )
+  group_by( Weekday ) %>%
+  summarise( meanUsers = mean(Users) ) %>% 
+  arrange( -meanUsers )
 
 print(output3)
 
 
 # ... bonus question: How would you exclude weekends?
+
+output4 <- tidy_users %>%
+  filter(Weekday != "Saturday" & Weekday != "Sunday") %>%
+  group_by( Weekday ) %>%
+  summarise( meanUsers = mean(Users) ) %>% 
+  arrange( -meanUsers )
+
+print(output4)
