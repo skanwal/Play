@@ -6,7 +6,11 @@ tidy_users <- read_csv("./datasets/tidy_users.csv")
 # the website as a function of the day of the week: the 
 # variable "weekday_users" should have two columns, one named
 # "Weekday" and the other named "mean_users".
-YOUR_CODE_GOES_HERE
+weekday_users <- tidy_users %>%
+  group_by( Weekday ) %>%
+  summarise(
+    mean_users = mean(Users)
+  )
 
 # print the summary to the console 
 print(weekday_users)
