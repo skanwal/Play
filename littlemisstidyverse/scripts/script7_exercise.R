@@ -1,7 +1,7 @@
 # load packages 
 library(tidyverse)
 
-# A new data set! This is from an experient I ran looking at
+# A new data set! This is from an experiment I ran looking at
 # how people reason about... stuff. The details don't really
 # matter, other than to note that there are 21 observations
 # per person, and it would be nice to have code that would let
@@ -12,21 +12,21 @@ reasoning <- read_csv("./datasets/frames_ex2.csv")
 
 # Print the data to screen. Notice that there are a lot of
 # rows, because every row is a single judgment!
-YOUR-CODE-HERE
+print(reasoning)
 
 # Use filter to extract the data from person with id = 12
 one_person <- reasoning %>% 
-  YOUR-CODE-HERE
+  filter(id == 12)
 
 # Take a look at the raw data
-YOUR-CODE-HERE
+print(one_person)
 
 # Next let's look at their average "response" across each of the
 # 7 test items (i.e., group by test item and compute the mean
 # response for each one)
 generalisation <- person %>%
-  group_by(YOUR-CODE-HERE) %>%
-  summarise(mean_response = YOUR-CODE-HERE)
+  group_by(test_item) %>%
+  summarise(mean_response = mean(response))
 
 # Now plot the generalisations. We haven't talked much about 
 # the details of plotting yet, but see if you can work out what
