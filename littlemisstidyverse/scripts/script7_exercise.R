@@ -24,7 +24,7 @@ print(one_person)
 # Next let's look at their average "response" across each of the
 # 7 test items (i.e., group by test item and compute the mean
 # response for each one)
-generalisation <- person %>%
+generalisation <- one_person %>%
   group_by(test_item) %>%
   summarise(mean_response = mean(response))
 
