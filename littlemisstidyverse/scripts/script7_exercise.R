@@ -54,7 +54,7 @@ plot(pic)
 
 little_reason <- reasoning %>%
   select( id, gender, age, condition , response) %>%
-  group_by( id, gender, age, condition, id) %>%
+  group_by( id, gender, age, condition) %>%
   summarise( mean_response = mean(response)) %>%
   ungroup()
 
