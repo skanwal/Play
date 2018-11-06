@@ -53,9 +53,10 @@ plot(pic)
 # and keep the "mean_response" in the output
 
 little_reason <- reasoning %>%
-  select( YOUR-CODE-HERE ) %>%
-  group_by( YOUR-CODE-HERE ) %>%
-  summarise( YOUR-CODE-HERE ) 
+  select( id, gender, age, condition , response) %>%
+  group_by( id, gender, age, condition, id) %>%
+  summarise( mean_response = mean(response)) %>%
+  ungroup()
 
 # ... bonus: think about how you might summarise this 
 # simpler data using the tools we've talked about
