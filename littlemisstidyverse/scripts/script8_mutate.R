@@ -12,8 +12,7 @@ tidy_users <- tidy_users %>%
 # problem 2: you can add multiple variables at once this way
 tidy_users <- tidy_users %>% 
   mutate(
-    #YOUR-NEW-VAR1 = CODE,
-    #YOUR-NEW-VAR2 = MORE-CODE
+    month_rank = rank(-Month)
   )
 
 # problem 3: create a transformed "cat_month" variable
@@ -36,7 +35,7 @@ tidy_users <- tidy_users %>%
 tidy_users <- tidy_users %>% 
   mutate(
     named_month = Month %>% 
-      factor(labels = c("Mar","Apr","May","Jun", "Jul", "Aug")) 
+      factor(labels = c("March","April","May","June", "July", "August")) 
   )
 
 # revisit the graph from script 4...
