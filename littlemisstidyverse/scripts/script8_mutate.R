@@ -17,7 +17,8 @@ tidy_users <- tidy_users %>%
 
 # problem 3: create a transformed "cat_month" variable
 # that takes the numeric Month variable and converts it
-# to a factor (i.e., declare it categorical)
+# to a factor (i.e., declare it categorical) - which tends to 
+# assign numerical values as factors by default
 tidy_users <- tidy_users %>% 
   mutate(cat_month = factor(Month)) 
 
