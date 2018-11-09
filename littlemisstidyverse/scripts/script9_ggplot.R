@@ -63,7 +63,7 @@ pic4 <- tidy_users %>%
   geom_line() + 
   scale_x_continuous(name = "Day Number") +  # same as xlab("Day Number")  
   scale_y_continuous(name = "User Count") + 
-  scale_colour_discrete(name = "Month")
+  scale_colour_hue(name = "Month")
 
 # draw the pictures
 plot(pic3)
