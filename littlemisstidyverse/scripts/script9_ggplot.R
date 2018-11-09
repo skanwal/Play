@@ -36,7 +36,7 @@ pic1 <- monthly_users %>%
 pic2 <- pic1 +
   xlab("Month (2018)") +           # nicer x-axis label
   ylab("Total Number of Users") +  # nicer y-axis label
-  theme_bw()                       # use a black & white theme
+  theme_light()                      # use a black & white theme
 
 # now we have both plots stored as variables. let's plot them:
 plot(pic1)
