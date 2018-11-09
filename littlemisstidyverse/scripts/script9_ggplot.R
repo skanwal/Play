@@ -59,7 +59,7 @@ pic3 <- tidy_users %>%
 # to the x-axis, y-axis and colour legend:
 pic4 <- tidy_users %>% 
   ggplot(aes(x = DayNum, y = Users, colour = named_month)) +
-  geom_point(size = 3, alpha = 0.2) + # large plot markers, semi-transparent
+  geom_point(size = 2, alpha = 0.3) + # large plot markers, semi-transparent
   geom_line() + 
   scale_x_continuous(name = "Day Number") +  # same as xlab("Day Number")  
   scale_y_continuous(name = "User Count") + 
