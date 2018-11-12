@@ -6,7 +6,7 @@ afl <- read_csv("./datasets/afl.csv")
 
 # summarise...
 attendance <- afl %>%
-  group_by(year, game_type) %>%
+  group_by(game_type, year) %>%
   summarise(attendance = mean(attendance))
 
 # visualise...
