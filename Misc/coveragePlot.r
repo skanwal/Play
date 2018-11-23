@@ -2,7 +2,7 @@
 
 # Do some plots of mosdepth coverage
 
-cov_files <- list.files("/Users/adpattison/Documents/Projects/Year_2018/merkel/RNA-Seq/Genome_coverage",full.names = T)
+cov_files <- list.files("path/to/Genome_coverage",full.names = T)
 
 covs <- list()
 
@@ -69,7 +69,7 @@ ggplot(data = to_plot_chrs, aes(x = Coverage, y = Overall, colour = kit,fill = S
         axis.title=element_text(size=16,face="bold"),
         legend.key=element_blank(),
         strip.text=element_text(size=16))+
-  ggsave("~/Documents/Projects/Year_2018/merkel/RNA-Seq/plots/Coverage_by_chr_and_kit_close.pdf")
+  ggsave("path/to/Coverage_by_chr_and_kit_close.pdf")
 
   
 
@@ -90,7 +90,7 @@ ggplot(data = totals, aes(x = Coverage, y = Overall, colour = kit,fill = Sample)
         axis.title=element_text(size=16,face="bold"),
         legend.key=element_blank(),
         strip.text=element_text(size=16))+
-  ggsave("~/Documents/Projects/Year_2018/merkel/RNA-Seq/plots/Coverage_by_kit_close.pdf")
+  ggsave("path/to/Coverage_by_kit_close.pdf")
 
 ggplot(data = totals, aes(x = Coverage, y = Overall, colour = kit,fill = Sample))+
   geom_line()+
@@ -106,4 +106,4 @@ ggplot(data = totals, aes(x = Coverage, y = Overall, colour = kit,fill = Sample)
         axis.title=element_text(size=16,face="bold"),
         legend.key=element_blank(),
         strip.text=element_text(size=16))+
-  ggsave("~/Documents/Projects/Year_2018/merkel/RNA-Seq/plots/Coverage_by_kit_wide.pdf")```
+  ggsave("path/to/Coverage_by_kit_wide.pdf")```
