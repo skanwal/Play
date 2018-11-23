@@ -1,4 +1,4 @@
-```library(tidyverse)
+library(tidyverse)
 
 # Do some plots of mosdepth coverage
 
@@ -106,4 +106,4 @@ ggplot(data = totals, aes(x = Coverage, y = Overall, colour = kit,fill = Sample)
         axis.title=element_text(size=16,face="bold"),
         legend.key=element_blank(),
         strip.text=element_text(size=16))+
-  ggsave("path/to/Coverage_by_kit_wide.pdf")```
+  ggsave("path/to/Coverage_by_kit_wide.pdf")
