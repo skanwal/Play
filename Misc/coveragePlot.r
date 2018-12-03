@@ -1,3 +1,4 @@
+#required packages
 library(tidyverse)
 
 # Do some plots of mosdepth coverage
@@ -17,7 +18,6 @@ for (i in 1:length(cov_files)){
     
 }
 
-
 chrs <- c(as.character(1:22), "X", "Y", "MT", "total")
 
 bound <- bind_rows(covs)%>%
@@ -33,7 +33,6 @@ bound <- bind_rows(covs)%>%
 
 to_plot_chrs <- bound %>%
   filter(!grepl("total",Chr))
-
 
 # Plot per-sample and per-chromosome coverage
 ggplot(data = to_plot_chrs, aes(x = Coverage, y = Proportion, colour = kit,fill = Sample))+
@@ -52,7 +51,6 @@ ggplot(data = to_plot_chrs, aes(x = Coverage, y = Proportion, colour = kit,fill 
         legend.key=element_blank(),
         strip.text=element_text(size=16))
 
-
 # Coverage calcualted by Mosdepth accounting for duplicated reads
 ggplot(data = to_plot_chrs, aes(x = Coverage, y = Overall, colour = kit,fill = Sample))+
   geom_line()+
@@ -70,8 +68,6 @@ ggplot(data = to_plot_chrs, aes(x = Coverage, y = Overall, colour = kit,fill = S
         legend.key=element_blank(),
         strip.text=element_text(size=16))+
   ggsave("path/to/Coverage_by_chr_and_kit_close.pdf")
-
-  
 
 totals <- bound %>%
   filter(Chr == "total")
