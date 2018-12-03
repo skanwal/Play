@@ -67,7 +67,7 @@ ggplot(data = to_plot_chrs, aes(x = Coverage, y = Overall, colour = kit,fill = S
         axis.title=element_text(size=16,face="bold"),
         legend.key=element_blank(),
         strip.text=element_text(size=16))+
-  ggsave("path/to/Coverage_by_chr_and_kit_close.pdf")
+  ggsave("~/Documents/UMCCR/Misc/Coverage_by_chr_and_kit_close.pdf")
 
 totals <- bound %>%
   filter(Chr == "total")
@@ -102,4 +102,4 @@ ggplot(data = totals, aes(x = Coverage, y = Overall, colour = kit,fill = Sample)
         axis.title=element_text(size=16,face="bold"),
         legend.key=element_blank(),
         strip.text=element_text(size=16))+
-  ggsave("path/to/Coverage_by_kit_wide.pdf")
+  ggsave("~/Documents/UMCCR/Misc/Coverage_by_kit_wide.pdf")
