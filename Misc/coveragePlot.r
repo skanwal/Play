@@ -2,20 +2,16 @@
 library(tidyverse)
 
 # Do some plots of mosdepth coverage
+cov_files <- list.files("~/Documents/UMCCR/data/mosdepth/genome_coverage_andrew/",full.names = T)
 
-#cov_files <- list.files("path/to/Genome_coverage",full.names = T)
-cov_file <- read.table("~/Documents/UMCCR/analysis/mosdepth/PRJ180027_E157.mosdepth.region.dist.txt")
+covs <- list()
 
-#covs <- list()
-
-#for (i in 1:length(cov_files)){ 
-#  file <- read.table(cov_files[[i]], header = F, sep = "\t",stringsAsFactors = F)
-#  colnames(file) <-  c("Chr", "Coverage", "Proportion")
-#  file$Sample <- gsub(".mosdepth.region.dist.txt" ,"", basename(cov_files[[i]]))
-#  covs[[i]] <- file
-#}
-
-colnames(cov_file) <- c("Chr", "Coverage", "Proportion")
+for (i in 1:length(cov_files)){ 
+  file <- read.table(cov_files[[i]], header = F, sep = "\t",stringsAsFactors = F)
+  colnames(file) <-  c("Chr", "Coverage", "Proportion")
+  file$Sample <- gsub(".mosdepth.region.dist.txt" ,"", basename(cov_files[[i]]))
+  covs[[i]] <- file
+}
 
 chrs <- c(as.character(1:22), "X", "Y", "MT", "total")
 
