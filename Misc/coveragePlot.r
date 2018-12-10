@@ -1,8 +1,9 @@
 #required packages
 library(tidyverse)
+library(here)
 
 # Do some plots of mosdepth coverage
-cov_files <- list.files("~/Documents/UMCCR/data/mosdepth/genome_coverage_andrew/",full.names = T)
+cov_files <- list.files(here("Documents/UMCCR/data/mosdepth/genome_coverage_andrew"),full.names = T)
 
 covs <- list()
 
@@ -50,7 +51,7 @@ ggplot(data = to_plot_chrs, aes(x = Coverage, y = Proportion, colour = kit,fill 
 ggplot(data = to_plot_chrs, aes(x = Coverage, y = Overall, colour = kit,fill = Sample))+
   geom_line()+
   facet_wrap(~Chr)+
-  labs(x = "Mosdepth coverage" ,y = "Proportion of exonic regions covered", coour = "Kit")+
+  labs(x = "Mosdepth coverage", y = "Proportion of exonic regions covered", coour = "Kit")+
   guides(fill= F)+
   xlim(0,50)+
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
