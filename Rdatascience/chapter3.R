@@ -26,4 +26,22 @@ ggplot(data = mpg) +
 #which variables in mpg are categorical? Which variables are continuous?
 sapply(mpg, class)
 
-#
+#using facets to display subset of data
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~class, nrow = 2)
+
+#faceting on comination of variables
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ cyl)
+
+#facet in a staraight line, instead of diving into rows and columns
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ class)
+
+#faceting on a continuous variable - doesn't make sense, is distorted
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ model, nrow = 2)
