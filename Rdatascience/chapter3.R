@@ -11,6 +11,19 @@ ggplot(data = mpg) +
 nrow(mpg)
 ncol(mpg)
 
-#scatter plot of hwy vs cyl
+#scatter plot of displ vs hwy
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
+
+#plot using aplha aesthetic
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, alpha = class))
+
+#plot using shape aesthetic aesthetic
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
+
+#which variables in mpg are categorical? Which variables are continuous?
+sapply(mpg, class)
+
+#
