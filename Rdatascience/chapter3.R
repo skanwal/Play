@@ -66,5 +66,24 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(color = class)) +
   geom_smooth(data = filter(mpg, class == "subcompact"), se = TRUE )
 
+#recreate R code for the graphs shown in exercise 3.6
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_smooth(aes(group = drv), se = FALSE) +
+  geom_point()
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_smooth(aes(group = drv), se = FALSE) +
+  geom_point()
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(aes(color = drv)) +
+  geom_smooth(aes(linetype = drv), se = FALSE)
+
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(size = 4, colour = "white") + 
+  geom_point(aes(colour = drv))
 
