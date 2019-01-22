@@ -45,3 +45,26 @@ ggplot(data = mpg) +
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   facet_wrap(~ model, nrow = 2)
+
+#display multiple geoms in the sample plot
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  geom_smooth(mapping = aes(x = displ, y = hwy))
+
+#passing global mappings
+ggplot(data = mpg, mapping = aes(x= displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+
+#place aes in both geom functions and global mappings
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point(mapping = aes(color = class)) + 
+  geom_smooth()
+
+#using different data for each layer of the plot
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point(mapping = aes(color = class)) +
+  geom_smooth(data = filter(mpg, class == "subcompact"), se = TRUE )
+
+
+
