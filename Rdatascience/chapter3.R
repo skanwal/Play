@@ -87,3 +87,23 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point(size = 4, colour = "white") + 
   geom_point(aes(colour = drv))
 
+#using statistical transformations from box plots
+ggplot(data = diamonds )+
+  geom_bar(mapping = aes(x = cut))
+
+#display a bar chart of proportion
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1)) #group="whatever" overrides the default geom_bar behavior
+                                                            #of counting whatever is on x-axis. 
+
+#Adding statistical transformation to code
+ggplot(data = diamonds) + 
+  stat_summary(
+    mapping = aes(x = cut, y = depth),
+    geom = 'point',
+    fun.ymin = min,
+    fun.ymax = max,
+    fun.y = median
+  )
+
+
