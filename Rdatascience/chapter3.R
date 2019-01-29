@@ -96,7 +96,7 @@ ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1)) #group="whatever" overrides the default geom_bar behavior
                                                             #of counting whatever is on x-axis. 
 
-#Adding statistical transformation to code
+#adding statistical transformation to code
 ggplot(data = diamonds) + 
   stat_summary(
     mapping = aes(x = cut, y = depth),
@@ -106,4 +106,23 @@ ggplot(data = diamonds) +
     fun.y = median
   )
 
+#position adjustments
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, colour = cut))
 
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, fill = cut))
+
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = cut, fill = clarity))
+
+
+#exercise 3.8.1
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point(position = "jitter")
+
+#exercise 3.9.1
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point() + 
+  geom_abline() +
+  coord_fixed()
