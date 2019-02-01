@@ -126,3 +126,16 @@ ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
   geom_point() + 
   geom_abline() +
   coord_fixed()
+
+#exercise 3.9.4
+#using coord_fixed(), the plot draws equal intervals on the x and y axes so 
+#they are directly comparable. geom_abline() draws a line that, by default, 
+#has an intercept of 0 and slope of 1. This aids us in our discovery that 
+#automobile gas efficiency is on average slightly higher for highways than 
+#city driving, though the slope of the relationship is still roughly 1-to-1.
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) +
+  geom_point() + 
+  geom_abline() +
+  coord_fixed()
+
+
