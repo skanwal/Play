@@ -13,7 +13,8 @@
 
 # Set up
 # Change to your own output location
-setwd("~/Documents/UMCCR/data/fusions/pizzly-validation/grolar")
+#setwd("~/Documents/UMCCR/data/fusions/pizzly-validation/grolar")
+setwd("~/Documents/UMCCR/data/fusions/pizzly-validation/grolar/CCR170057")
 
 # CRAN libs
 library(jsonlite)
@@ -100,8 +101,8 @@ GetFusionz_and_namez <- function(sample, suffix) {
   output <- output[idx,]
 
   # Write out output
-  cat(paste0("Writing out table: ", sample, "_fusions_filt_sorted.txt", "\n"))
-  write.table(output, file = paste0(sample, "_fusions_filt_sorted.txt"), quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
+  cat(paste0("Writing out table: ", sample, "_fusions_filt_sorted.tsv", "\n"))
+  write.table(output, file = paste0(sample, "_fusions_filt_sorted.tsv"), quote = FALSE, sep = "\t", row.names = FALSE, col.names = TRUE)
   cat("\n")
   return(TRUE)
 }
