@@ -1,0 +1,30 @@
+---
+title: "QC analysis using multiQC and megaQC"
+author: "Sehrish Kanwal"
+date: "`r format(Sys.time(), '%a %Y-%b-%d')`"
+output:
+  html_document: 
+  keep_md: true
+params:
+  samples_lims: '/Users/kanwals/Documents/UMCCR/data/2019-05-10T0058_backup.csv'
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) # global setup
+```
+
+## Required packages
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyr)
+library(dplyr)
+```
+
+```{r, message=FALSE, warning=FALSE}
+data <- read.csv(params$samples_lims, header=TRUE) 
+data_WTS_unique <- data %>%
+  dplyr::filter(Type == 'WTS', Results != 'Failed', Results != 'n/a', Results != '-') %>%
+  dplyr::select(Results) %>%
+  unique() %>%
+  write.csv(file = "/Users/kanwals/Documents/UMCCR/data/WTS_unique.csv")
+```

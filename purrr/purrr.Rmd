@@ -1,0 +1,211 @@
+---
+title: "purrr tutorial"
+author: "Sehrish Kanwal"
+date: "`r format(Sys.time(), '%a %Y-%b-%d')`"
+output: 
+  html_document: 
+    keep_md: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This report documents the work I did to learn R's `purrr` package (https://jennybc.github.io/purrr-tutorial/index.html). Trying to tick-off one item from my to-do list :memo:
+
+## Required packages
+
+```{r}
+library(purrr)
+library(repurrrsive)
+library(listviewer)
+library(tibble)
+library(jsonlite)
+library(dplyr)
+library(stringr)
+library(lubridate)
+#library(here)
+```
+
+`listviewer` is an interactive way to explore objects vs `str`. 
+`wesanderson`, `got_chars` and `gh_users` are lists from library `repurrrsive`. 
+
+# Exploring data
+
+```{r}
+str(wesanderson)
+listviewer::jsonedit(wesanderson, mode = "view")
+
+str(got_chars, list.len = 4)
+listviewer::jsonedit(got_chars, mode = "view")
+
+str(gh_users, max.level = 2)
+listviewer::jsonedit(gh_users, mode = "view")
+```
+
+# map(): Extract elements
+
+A template for basic map() usage is `map(YOUR_LIST, YOUR_FUNCTION)`
+
+```{r}
+# Extract elements with name "name" - restrict to first few elements
+map(got_chars[1:4], "name")
+
+# Extract elements on the basis of integer values
+map(got_chars[5:8], 3)
+
+# Using the pipe %>%
+got_chars[1:4] %>% 
+  map("name")
+got_chars[5:8] %>% 
+  map(3)
+```
+
+In summary, are two shortcuts for making the .f function that map() will apply:
+
+  - provide “TEXT” to extract the element named “TEXT”
+         equivalent to function(x) x[["TEXT"]]
+  - provide i to extract the i-th element
+         equivalent to function(x) x[[i]]
+
+## Exercises
+
+Use names() to inspect the names of the list elements associated with a single character. What is the index or position of the playedBy element? Use the character and position shortcuts to extract the playedBy elements for all characters.
+
+```{r}
+map(got_chars[1:4], "playedBy")
+map(got_chars[1:4], 18)
+```
+
+What happens if you use the character shortcut with a string that does not appear in the lists’ names?
+
+```{r}
+map(got_chars[1:4], "namess")
+```
+
+## Type-specific map
+
+map() always returns a list, even if all the elements have the same flavor and are of length one. But in that case, you might prefer a simpler object: an atomic vector.
+
+```{r}
+#returns a list
+map(got_chars[9:12], "name")
+
+#returns atomic vector
+map_chr(got_chars[9:12], "name")
+```
+
+## Extract multiple values
+
+```{r}
+got_chars[[3]][c("name", "culture", "gender", "born")]
+
+#using map
+x <- map(got_chars, `[`, c("name", "culture", "gender", "born"))
+str(x[16:17])
+
+#using extract from magrittr
+library(magrittr)
+x <- map(got_chars, extract, c("name", "culture", "gender", "born"))
+str(x[18:19])
+```
+
+## Data frame output
+
+Above, we extrcated lists from `map` list. However, we can stack-up these results row-wise 
+
+```{r}
+map_df(got_chars, extract, c("name", "culture", "gender", "id", "born", "alive"))
+```
+
+Notice how the variables have been automatically type converted. It’s a beautiful thing. Until it’s not. When programming, it is safer, but more cumbersome, to explicitly specify type and build your data frame the usual way.
+
+```{r}
+got_chars %>% {
+  tibble(
+    name <- map_chr(., "name"),
+    culture <- map_chr(., "culture"),
+    gender <- map_chr(., "gender"),
+    id <- map_int(., "id"),
+    born <- map_chr(., "born"),
+    alive <- map_lgl(., "alive")
+  )
+}
+```
+
+# Simplifying data
+
+A great use of purrr’s map() functions is to dig information out of a non-rectangular data structure and create a neat data frame. 
+
+## Name and position shortcuts
+
+Who are these GitHub users?
+
+We need to reach into each user’s list and pull out the element that holds the user’s name or, maybe, username. How?
+
+```{r}
+map(gh_users, "login")
+```
+
+# Specifying the function in map()
+
+Let's now work on three more ways to specify general `.f` function in map():
+
+  - an existing function
+  - an anonymous function, defined on-the-fly, as usual
+  - a formula: this is unique to purrr and provides a very concise way to define an anonymous function
+  
+In Game of Thrones character list, got_chars, each character can have aliases, which are stored in a vector in each character’s component. We pull out the aliases for three characters to use as our demo.
+
+```{r}
+aliases <- set_names(map(got_chars, "aliases"), map_chr(got_chars, "name"))
+aliases <- aliases[c("Theon Greyjoy", "Asha Greyjoy", "Brienne of Tarth")]
+```
+
+## Existing function
+
+Use a pre-existing function. Or, as here, define one ourselves, which gives a nice way to build-in our specification for the  collapse argument.
+
+```{r}
+my_fun <- function(x)
+  paste(x, collapse = " | ")
+
+map(aliases, my_fun)
+```
+
+
+## Anonymous function, conventional
+
+Define an anonymous function on-the-fly, in the conventional way. Here we put our desired value for the collapse argument into the function defintion itself.
+
+```{r}
+map(aliases, function(x) paste(x, collapse = " | ")) 
+```
+
+## Anonymous function, formula
+
+We saved possibly the best for last.
+
+purrr provides a very concise way to define an anonymous function: as a formula. This should start with the ~ symbol and then look like a typical top-level expression, as you might write in a script. Use .x to refer to the input, i.e. an individual element of the primary vector or list.
+
+```{r}
+map(aliases, ~ paste(.x, collapse = " | "))
+```
+
+# List columns
+
+Getting and preparing data. I stumbled onto an issue trying to read data using read_csv. I had to update R and re-install few packages.
+
+```{r}
+load("trump_tweets_df.rda")
+#glimpse(trump_tweets_df)
+
+tweets <- trump_tweets_df$text
+tweets %>% head() %>% strtrim(70)
+
+tweets <- tweets[c(1, 2, 5, 6, 198, 347, 919)]
+tweets %>% strtrim(70)
+```
+

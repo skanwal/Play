@@ -1,0 +1,66 @@
+{
+  "variables": {
+    "custom_ami_name": "WTS-report-ami",
+    "ssh_username": "ubuntu"
+  },
+  "builders": [
+    {
+      "name": "{{user `custom_ami_name`}}",
+      "type": "amazon-ebs",
+      "region": "ap-southeast-2",
+      "source_ami": "ami-0edcec072887c2caa",
+      "instance_type": "m4.xlarge",
+      "spot_price": "auto",
+      "spot_price_auto_product": "Linux/UNIX",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_timeout": "10m",
+      "ami_name": "{{user `custom_ami_name`}} {{timestamp}}",
+      "ami_description": "{{user `custom_ami_name`}} AMI",
+      "associate_public_ip_address": true,
+      "run_tags": {
+        "ami-create": "{{user `custom_ami_name`}}"
+      },
+      "tags": {
+        "ami": "{{user `custom_ami_name`}}",
+        "Name": "{{user `custom_ami_name`}}:{{user `commit_id`}}",
+        "timestamp": "{{timestamp}}",
+        "commit": "{{user `commit_id`}}",
+        "commit_msg": "{{user `commit_msg`}}"
+      },
+      "launch_block_device_mappings": [
+      {
+        "device_name": "/dev/sda1",
+        "volume_size": 20,
+        "volume_type": "gp2",
+        "delete_on_termination": true
+      }
+     ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "bootstrap_docker_ce.sh",
+      "destination": "/tmp/bootstrap_docker_ce.sh"
+    },
+    {
+      "type": "file",
+      "source": "cleanup.sh",
+      "destination": "/tmp/cleanup.sh"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'packer' | sudo -S sh -c '{{ .Vars }} {{ .Path }}'",
+      "inline": [
+        "whoami",
+        "cd /tmp",
+        "chmod +x bootstrap_docker_ce.sh",
+        "chmod +x cleanup.sh",
+        "ls -alh /tmp",
+        "./bootstrap_docker_ce.sh",
+        "sleep 10",
+        "./cleanup.sh"
+      ]
+    }
+ ]
+}
