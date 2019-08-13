@@ -1,7 +1,5 @@
 {
   "variables": {
-    "commit_id": "{{env `TRAVIS_COMMIT`}}",
-    "commit_msg": "{{env `TRAVIS_COMMIT_MESSAGE`}}",
     "custom_ami_name": "WTS-report-ami",
     "ssh_username": "ubuntu"
   },
@@ -9,18 +7,13 @@
     {
       "name": "{{user `custom_ami_name`}}",
       "type": "amazon-ebs",
-      "iam_instance_profile": "new_packer_instance_profile",
       "region": "ap-southeast-2",
-      "source_ami": "ami-fbb66399",
+      "source_ami": "ami-0edcec072887c2caa",
       "instance_type": "m4.xlarge",
       "spot_price": "auto",
       "spot_price_auto_product": "Linux/UNIX",
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_timeout": "10m",
-      "ami_users": [
-        "472057503814",
-        "620123204273"
-      ],
       "ami_name": "{{user `custom_ami_name`}} {{timestamp}}",
       "ami_description": "{{user `custom_ami_name`}} AMI",
       "associate_public_ip_address": true,
