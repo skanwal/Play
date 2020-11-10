@@ -1,0 +1,32 @@
+---
+title: "How R You Rladies - Melbourne"
+author: "Sehrish Kanwal"
+date: "`r format(Sys.time(), '%a %Y-%b-%d')`"
+output:
+  html_document:
+    keep_md: true
+editor_options:
+  chunk_output_type: console
+params:
+  directory:
+    value: x
+  file:
+    value: x
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE) # global setup
+```
+
+This R markdown document is used as an example to show how to run Rmd files via Command Line Interface (CLI).
+
+Required packages
+
+```{r, message=FALSE}
+library(here)
+```
+
+```{r, echo=FALSE}
+file <-  read.delim(paste(params$directory, params$file, sep = '/'))
+head(file)
+```
