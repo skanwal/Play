@@ -38,3 +38,37 @@ t2_cases_per_cap <- t2_cases_per_cap %>%
 # join newly created data with original data
 bind_rows(table2, t2_cases_per_cap) %>%
   arrange(country, year, type, count)
+
+# pivot_* 
+people <- tribble(
+  ~name, ~key, ~value,
+  #-----------------|--------|------
+  "Phillip Woods",  "age", 45,
+  "Phillip Woods", "height", 186,
+  "Phillip Woods", "age", 50,
+  "Jessica Cordero", "age", 37,
+  "Jessica Cordero", "height", 156
+)
+glimpse(people)
+# error - as name and key are not unique for two rows
+pivot_wider(people, names_from="key", values_from = "value")
+# to solve the issue add a column that refers to distinct obsertvation count
+people2 <- people %>%
+  group_by(name, key) %>%
+  mutate(obs = row_number())
+pivot_wider(people2, names_from="name", values_from = "value")
+
+# tidy the following data
+preg <- tribble(
+  ~pregnant, ~male, ~female,
+  "yes", NA, 10,
+  "no", 20, 12
+)
+preg_tidy2 <- preg %>%
+  pivot_longer(c(male, female), names_to = "sex", values_to = "count", values_drop_na = TRUE)
+
+preg_tidy3 <- preg_tidy2 %>%
+  mutate(
+    female = sex == "female",
+    pregnant = pregnant == "yes"
+  )
